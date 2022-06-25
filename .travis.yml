@@ -15,9 +15,9 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node .
+  # - docker build -t simple-node .
+  - docker build -t simple-node --build-arg DOCKER_USERNAME=${DOCKER_USERNAME} .
   - docker tag simple-node tuyojr/simple-node:latest
-  - docker build -t simple-node --build-arg DOCKER_USERNAME=${DOCKER_USERNAME}
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
